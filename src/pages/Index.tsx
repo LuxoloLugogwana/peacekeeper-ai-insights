@@ -1,26 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { MetricsOverview } from "@/components/dashboard/MetricsOverview";
 import { MissionMap } from "@/components/dashboard/MissionMap";
 import { SentimentChart } from "@/components/dashboard/SentimentChart";
 import { EventTimeline } from "@/components/dashboard/EventTimeline";
 import { AlertsPanel } from "@/components/dashboard/AlertsPanel";
 import { RiskAssessment } from "@/components/dashboard/RiskAssessment";
-import { Shield, Activity, LogOut, User } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Shield, Activity } from "lucide-react";
 
 const Index = () => {
-  const { user, roles, signOut } = useAuth();
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -41,29 +29,6 @@ const Index = () => {
                 <Activity className="h-3 w-3" />
                 Live
               </Badge>
-              
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>
-                    <div>
-                      <div className="font-medium">{user?.email}</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {roles.map(r => r.replace('_', ' ')).join(', ') || 'No roles assigned'}
-                      </div>
-                    </div>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={signOut}>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
             </div>
           </div>
         </div>
